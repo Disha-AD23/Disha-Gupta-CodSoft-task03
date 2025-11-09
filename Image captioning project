@@ -1,0 +1,51 @@
+import os
+import random
+
+# Simulated captions database for known images
+image_captions = {
+    "dog.jpg": [
+        "A dog is running in the park.",
+        "A happy dog playing outside.",
+        "A dog with a stick in its mouth."
+    ],
+    "cat.jpg": [
+        "A cat sitting on the window.",
+        "A curious cat looking around.",
+        "A sleeping cat on the couch."
+    ],
+    "car.jpg": [
+        "A red car parked by the street.",
+        "A sports car ready to race.",
+        "An old car in the garage."
+    ]
+}
+
+def simulate_image_captioning(image_filename):
+    """
+    Simulates captioning by selecting a random caption for a known image.
+    """
+    if image_filename in image_captions:
+        captions = image_captions[image_filename]
+        caption = random.choice(captions)
+        return caption
+    else:
+        return "No caption available for this image."
+
+def main():
+    # Simulate an image directory (can be customized)
+    image_directory = "images"
+    
+    if not os.path.exists(image_directory):
+        print(f"Directory '{image_directory}' does not exist. Please create it and add test images.")
+        return
+    
+    print("Simulated Image Captioning System\n")
+    
+    for filename in os.listdir(image_directory):
+        if filename.lower().endswith((".jpg", ".jpeg", ".png")):
+            caption = simulate_image_captioning(filename)
+            print(f"Image: {filename}")
+            print(f"Caption: {caption}\n")
+
+if __name__ == "__main__":
+    main()
